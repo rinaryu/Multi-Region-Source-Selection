@@ -1,5 +1,7 @@
 # create video segments and MPD
-# USE bento4
+'''
+IMPORTANT: Functions use Bento4 v1.6.0.640 (or higher), must have package installed on environment to be able to run. 
+'''
 import subprocess
 from pathlib import Path
 from typing import List, Optional
