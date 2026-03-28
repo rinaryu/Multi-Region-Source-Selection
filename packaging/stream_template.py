@@ -1,0 +1,1 @@
+# MPD template used by rewriter to insert region-specific baseURLs
