@@ -37,5 +37,4 @@ def get_init():
   return redirect(default_init, code=302)
 
 if __name__ == "__main__":
-  # For development. Use a WSGI server for production.
   app.run(host="0.0.0.0", port=8000, debug=True)
