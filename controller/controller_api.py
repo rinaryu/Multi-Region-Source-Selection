@@ -8,7 +8,6 @@ import manifest_rewriter, source_selector
 
 app = Flask(__name__)
 
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("controller.api")
 
