@@ -117,5 +117,4 @@ def select_sources(session_id: str,
   }
 
   return selection
-          
 

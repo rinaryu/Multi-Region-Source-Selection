@@ -16,6 +16,11 @@ SESSIONS: Dict[str, Dict[str, Any]] = {}
 # configuration: outputs packager root path
 MPD_ROOT = Path("dash")
 
+# get the initially generated manifest, get the source selection, inject the redirect base url into the manifest (mpd) and return it (as a Response)
+@app.route("/stream.mpd", methods=["GET"])
+def get_mpd():
+
+
 # Gets the redirect url for chosen segment of the session
 @app.route("/init", methods=["GET"])
 def get_init():
