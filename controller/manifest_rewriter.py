@@ -7,11 +7,11 @@ MPD_NS = "urn:mpeg:dash:schema:mpd:2011"
 ET.register_namespace("", MPD_NS)
 ns = {"mpd": MPD_NS}
 
-# helper method
+# helper method: convert base mpd into a tree (easier to rewrite+search)
 def parse_mpd(xml: str) -> ET.ElementTree:
   return ET.ElementTree(ET.fromstring(xml))
 
-# helper method
+# helper method: turn tree back into original type
 def serialize_mpd(tree: ET.ElementTree) -> str:
   return ET.tostring(tree.getroot(), encoding="utf-8", method="xml").decode("utf-8")
 
@@ -38,27 +38,27 @@ def rewrite_mpd(mpd: str, decisions: Dict[str, Any]) -> str:
   # turn mpd tree back into xml and return mpd
   return serialize_mpd(tree)
 
-#   print(root)
 
-def main():
-  mpd_root = Path("dash")
-  mpd_path = mpd_root / "1" / "stream.mpd"
-  mpd_xml = mpd_path.read_text(encoding="utf-8")
+# trivial testing
+# def main():
+#   mpd_root = Path("dash")
+#   mpd_path = mpd_root / "1" / "stream.mpd"
+#   mpd_xml = mpd_path.read_text(encoding="utf-8")
 
-  print(mpd_xml)
+#   print(mpd_xml)
 
-  selection = {
-    "selected_origin_id": "cdn-west",
-    "redirect_url": "https://cdn-west.ss.net/dash/s1/init.mp4",
-    "rewrite_map": {
-      "base_url": "https://cdn-west.ss.net/dash/"
-    }
-  }
-  print("spacer----------------")
+#   selection = {
+#     "selected_origin_id": "cdn-west",
+#     "redirect_url": "https://cdn-west.ss.net/dash/s1/init.mp4",
+#     "rewrite_map": {
+#       "base_url": "https://cdn-west.ss.net/dash/"
+#     }
+#   }
+#   print("spacer----------------")
 
-  mpd = rewrite_mpd(mpd_xml, selection)
+#   mpd = rewrite_mpd(mpd_xml, selection)
 
-  print(mpd)
+#   print(mpd)
 
-if __name__ == "__main__":
-  main()
+# if __name__ == "__main__":
+#   main()
