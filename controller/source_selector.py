@@ -1,4 +1,5 @@
 from typing import Dict, Any, Optional, List
+import time
 
 # temporary member names/links: CHANGE after implementing cloud vms
 CANDIDATE = [
@@ -54,34 +55,67 @@ def match_score(client: Optional[str], candidate: Dict[str, Any]) -> float:
 def score_all(client: Optional[str]) -> List[Dict[str, Any]]:
   scored = []
   for i in CANDIDATE:
-      if not i.get("health", True):
-          continue
-      s = match_score(client, i)
-      scored.append({"id": i["id"], "base_url": i["base_url"], "score": s})
+    if not i.get("health", True):
+      continue
+    s = match_score(client, i)
+    scored.append({"id": i["id"], "base_url": i["base_url"], "score": s})
   scored.sort(key=lambda x: x["score"], reverse=True)
   return scored
 
 
 # selection logic for redirecting segments
-# TODO: what exact metrics to use?
 # tentative metric: geography
-# output base URl for redirecting
-# def select_sources(mpd_xml: Optional[str], 
-#                    session_id: str, 
-#                    metrics: Dict[str, Any], 
-#                    client: Optional[str] = None) -> Dict[str, Any]:
+# output base URl for redirecting and selected 
+def select_sources(session_id: str,
+                   metrics: Dict[str, Any],
+                   client: Optional[str] = None) -> Dict[str, Any]:
+  
+  client_geo = (metrics or {}).get("geo")
+  scored = score_all(client_geo)
 
+  # session_id retreived from controller api
+  state = SESSION_STATE.setdefault(session_id, {})
+  last_choice = state.get("last_choice")
+  last_change = state.get("last_change", 0) # timestamp of last change
+  now = time.time()
 
-# def main():
-#   client = "CA-BC"
-#   scored = score_all(client)
+  chosen = None
 
-#   print(scored)
+ # apply sticky logic: reuse the last choice if the session is still within the buffer window
+  if last_choice and (now - last_change) < BUFFER:
+    last_candidate = next((c for c in CANDIDATE if c.get("id") == last_choice), None)
+    if last_candidate is not None:
+        last_score = match_score(client_geo, last_candidate)
+        if last_score > 0:
+            chosen = {"id": last_candidate["id"],
+                      "base_url": last_candidate["base_url"],
+                      "score": last_score,
+                      "sticky": True}
 
+  # outside the window, so simply choose the highest scoring option
+  if not chosen:
+    chosen = scored[0] if scored else None
+  
+  # fallback to origin: there were no country or regional matches
+  # pick global
+  if not chosen:
+    fallback = CANADIDATE[-1]
+    chosen = {"id": fallback["id"], "base_url": fallback["base_url"], "score": 0.0}
 
+  # update the session if the state has changed
+  if state.get("last_choice") != chosen["id"]:
+    state["last_choice"] = chosen["id"]
+    state["last_change"] = now
 
-# if __name__ == "__main__":
-#   main()
+  redirect_url = f"{chosen['base_url']}{session_id}/init.mp4"
 
+  selection = {
+    "selected_origin_id": chosen["id"],
+    "redirect_url": redirect_url,
+    "rewrite_map": {"base_url": chosen["base_url"]},
+
+  }
+
+  return selection
           
 
