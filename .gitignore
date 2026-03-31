@@ -1,6 +1,24 @@
+# Python
 __pycache__/
 *.py[cod]
+venv/
+env/
+.env
 
-# testing outputs
+# Testing and Outputs
 dash/
 renditions/
+
+# Media & Installers
+*.mp4
+*.pkg
+
+# OS / Environment Files
+.DS_Store
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
