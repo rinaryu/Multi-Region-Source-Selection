@@ -3,6 +3,6 @@ A smaller scale Dynamic Adaptive Streaming over HTTP (DASH) application which de
 
 
 ## Used/Required Packages
-ffmpeg: Creating specific bitrate rendition(s) for content.
-Bento4 v1.6.0.640 (or higher): Used to segment media content and build initial manifest for corresponding segments.
-Flask: The controller framework that receives user requests and runs the source selector.
+ffmpeg: Creating specific bitrate rendition(s) for content.  
+Bento4 v1.6.0.640 (or higher): Used to segment media content and build initial manifest for corresponding segments.  
+Flask: The controller framework that receives user requests and runs the source selector.  
