@@ -5,7 +5,7 @@
     "iteration": 1,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 778
+    "startup_delay": 774
   },
   {
     "region": "us-east-1",
@@ -13,7 +13,7 @@
     "iteration": 2,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 905
+    "startup_delay": 705
   },
   {
     "region": "us-east-1",
@@ -21,7 +21,7 @@
     "iteration": 3,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 784
+    "startup_delay": 793
   },
   {
     "region": "us-east-1",
@@ -29,7 +29,7 @@
     "iteration": 4,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 780
+    "startup_delay": 700
   },
   {
     "region": "us-east-1",
@@ -37,7 +37,7 @@
     "iteration": 5,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 797
+    "startup_delay": 692
   },
   {
     "region": "us-east-1",
@@ -45,7 +45,7 @@
     "iteration": 1,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 798
+    "startup_delay": 719
   },
   {
     "region": "us-east-1",
@@ -53,7 +53,7 @@
     "iteration": 2,
     "quality_id": 1,
     "buffer_stalls": 0,
-    "startup_delay": 999
+    "startup_delay": 923
   },
   {
     "region": "us-east-1",
@@ -61,7 +61,7 @@
     "iteration": 3,
     "quality_id": 1,
     "buffer_stalls": 0,
-    "startup_delay": 1185
+    "startup_delay": 1097
   },
   {
     "region": "us-east-1",
@@ -69,7 +69,7 @@
     "iteration": 4,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 795
+    "startup_delay": 705
   },
   {
     "region": "us-east-1",
@@ -77,159 +77,159 @@
     "iteration": 5,
     "quality_id": 1,
     "buffer_stalls": 0,
-    "startup_delay": 998
+    "startup_delay": 920
   },
   {
     "region": "us-east-1",
     "policy": "random",
     "iteration": 1,
-    "quality_id": 2,
-    "buffer_stalls": 0,
-    "startup_delay": 785
-  },
-  {
-    "region": "us-east-1",
-    "policy": "random",
-    "iteration": 2,
-    "quality_id": 1,
-    "buffer_stalls": 0,
-    "startup_delay": 1252
-  },
-  {
-    "region": "us-east-1",
-    "policy": "random",
-    "iteration": 3,
-    "quality_id": 2,
-    "buffer_stalls": 0,
-    "startup_delay": 787
-  },
-  {
-    "region": "us-east-1",
-    "policy": "random",
-    "iteration": 4,
-    "quality_id": 2,
-    "buffer_stalls": 0,
-    "startup_delay": 782
-  },
-  {
-    "region": "us-east-1",
-    "policy": "random",
-    "iteration": 5,
-    "quality_id": 2,
-    "buffer_stalls": 0,
-    "startup_delay": 824
-  },
-  {
-    "region": "us-west-2",
-    "policy": "distance",
-    "iteration": 1,
-    "quality_id": 1,
-    "buffer_stalls": 0,
-    "startup_delay": 934
-  },
-  {
-    "region": "us-west-2",
-    "policy": "distance",
-    "iteration": 2,
-    "quality_id": 1,
-    "buffer_stalls": 0,
-    "startup_delay": 972
-  },
-  {
-    "region": "us-west-2",
-    "policy": "distance",
-    "iteration": 3,
-    "quality_id": 1,
-    "buffer_stalls": 0,
-    "startup_delay": 990
-  },
-  {
-    "region": "us-west-2",
-    "policy": "distance",
-    "iteration": 4,
-    "quality_id": 1,
-    "buffer_stalls": 0,
-    "startup_delay": 974
-  },
-  {
-    "region": "us-west-2",
-    "policy": "distance",
-    "iteration": 5,
-    "quality_id": 1,
-    "buffer_stalls": 0,
-    "startup_delay": 915
-  },
-  {
-    "region": "us-west-2",
-    "policy": "round_robin",
-    "iteration": 1,
-    "quality_id": 1,
-    "buffer_stalls": 1,
-    "startup_delay": 1570
-  },
-  {
-    "region": "us-west-2",
-    "policy": "round_robin",
-    "iteration": 2,
-    "quality_id": 1,
-    "buffer_stalls": 0,
-    "startup_delay": 896
-  },
-  {
-    "region": "us-west-2",
-    "policy": "round_robin",
-    "iteration": 3,
-    "quality_id": 2,
-    "buffer_stalls": 0,
-    "startup_delay": 704
-  },
-  {
-    "region": "us-west-2",
-    "policy": "round_robin",
-    "iteration": 4,
-    "quality_id": 1,
-    "buffer_stalls": 1,
-    "startup_delay": 1528
-  },
-  {
-    "region": "us-west-2",
-    "policy": "round_robin",
-    "iteration": 5,
-    "quality_id": 1,
-    "buffer_stalls": 0,
-    "startup_delay": 1013
-  },
-  {
-    "region": "us-west-2",
-    "policy": "random",
-    "iteration": 1,
-    "quality_id": 2,
-    "buffer_stalls": 0,
-    "startup_delay": 703
-  },
-  {
-    "region": "us-west-2",
-    "policy": "random",
-    "iteration": 2,
     "quality_id": 2,
     "buffer_stalls": 0,
     "startup_delay": 701
   },
   {
-    "region": "us-west-2",
+    "region": "us-east-1",
+    "policy": "random",
+    "iteration": 2,
+    "quality_id": 2,
+    "buffer_stalls": 0,
+    "startup_delay": 737
+  },
+  {
+    "region": "us-east-1",
     "policy": "random",
     "iteration": 3,
     "quality_id": 1,
     "buffer_stalls": 0,
-    "startup_delay": 918
+    "startup_delay": 1089
+  },
+  {
+    "region": "us-east-1",
+    "policy": "random",
+    "iteration": 4,
+    "quality_id": 2,
+    "buffer_stalls": 0,
+    "startup_delay": 708
+  },
+  {
+    "region": "us-east-1",
+    "policy": "random",
+    "iteration": 5,
+    "quality_id": 1,
+    "buffer_stalls": 0,
+    "startup_delay": 968
+  },
+  {
+    "region": "us-west-2",
+    "policy": "distance",
+    "iteration": 1,
+    "quality_id": 1,
+    "buffer_stalls": 0,
+    "startup_delay": 1080
+  },
+  {
+    "region": "us-west-2",
+    "policy": "distance",
+    "iteration": 2,
+    "quality_id": 1,
+    "buffer_stalls": 0,
+    "startup_delay": 1055
+  },
+  {
+    "region": "us-west-2",
+    "policy": "distance",
+    "iteration": 3,
+    "quality_id": 2,
+    "buffer_stalls": 0,
+    "startup_delay": 1024
+  },
+  {
+    "region": "us-west-2",
+    "policy": "distance",
+    "iteration": 4,
+    "quality_id": 1,
+    "buffer_stalls": 0,
+    "startup_delay": 1025
+  },
+  {
+    "region": "us-west-2",
+    "policy": "distance",
+    "iteration": 5,
+    "quality_id": 1,
+    "buffer_stalls": 0,
+    "startup_delay": 1030
+  },
+  {
+    "region": "us-west-2",
+    "policy": "round_robin",
+    "iteration": 1,
+    "quality_id": 1,
+    "buffer_stalls": 1,
+    "startup_delay": 1557
+  },
+  {
+    "region": "us-west-2",
+    "policy": "round_robin",
+    "iteration": 2,
+    "quality_id": 1,
+    "buffer_stalls": 0,
+    "startup_delay": 1031
+  },
+  {
+    "region": "us-west-2",
+    "policy": "round_robin",
+    "iteration": 3,
+    "quality_id": 2,
+    "buffer_stalls": 0,
+    "startup_delay": 904
+  },
+  {
+    "region": "us-west-2",
+    "policy": "round_robin",
+    "iteration": 4,
+    "quality_id": 1,
+    "buffer_stalls": 1,
+    "startup_delay": 1547
+  },
+  {
+    "region": "us-west-2",
+    "policy": "round_robin",
+    "iteration": 5,
+    "quality_id": 1,
+    "buffer_stalls": 0,
+    "startup_delay": 1037
+  },
+  {
+    "region": "us-west-2",
+    "policy": "random",
+    "iteration": 1,
+    "quality_id": 1,
+    "buffer_stalls": 1,
+    "startup_delay": 1563
+  },
+  {
+    "region": "us-west-2",
+    "policy": "random",
+    "iteration": 2,
+    "quality_id": 1,
+    "buffer_stalls": 1,
+    "startup_delay": 1569
+  },
+  {
+    "region": "us-west-2",
+    "policy": "random",
+    "iteration": 3,
+    "quality_id": 1,
+    "buffer_stalls": 1,
+    "startup_delay": 1533
   },
   {
     "region": "us-west-2",
     "policy": "random",
     "iteration": 4,
-    "quality_id": 1,
-    "buffer_stalls": 1,
-    "startup_delay": 1485
+    "quality_id": 2,
+    "buffer_stalls": 0,
+    "startup_delay": 1022
   },
   {
     "region": "us-west-2",
@@ -237,7 +237,7 @@
     "iteration": 5,
     "quality_id": 1,
     "buffer_stalls": 0,
-    "startup_delay": 922
+    "startup_delay": 1032
   },
   {
     "region": "eu-central-1",
@@ -253,7 +253,7 @@
     "iteration": 2,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 941
+    "startup_delay": 976
   },
   {
     "region": "eu-central-1",
@@ -261,7 +261,7 @@
     "iteration": 3,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 960
+    "startup_delay": 896
   },
   {
     "region": "eu-central-1",
@@ -269,7 +269,7 @@
     "iteration": 4,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 955
+    "startup_delay": 872
   },
   {
     "region": "eu-central-1",
@@ -277,7 +277,7 @@
     "iteration": 5,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 947
+    "startup_delay": 882
   },
   {
     "region": "eu-central-1",
@@ -285,7 +285,7 @@
     "iteration": 1,
     "quality_id": 1,
     "buffer_stalls": 1,
-    "startup_delay": 1763
+    "startup_delay": 1660
   },
   {
     "region": "eu-central-1",
@@ -293,7 +293,7 @@
     "iteration": 2,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 942
+    "startup_delay": 875
   },
   {
     "region": "eu-central-1",
@@ -301,7 +301,7 @@
     "iteration": 3,
     "quality_id": 1,
     "buffer_stalls": 0,
-    "startup_delay": 1396
+    "startup_delay": 1282
   },
   {
     "region": "eu-central-1",
@@ -309,7 +309,7 @@
     "iteration": 4,
     "quality_id": 1,
     "buffer_stalls": 1,
-    "startup_delay": 1762
+    "startup_delay": 1598
   },
   {
     "region": "eu-central-1",
@@ -317,31 +317,31 @@
     "iteration": 5,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 946
+    "startup_delay": 869
   },
   {
     "region": "eu-central-1",
     "policy": "random",
     "iteration": 1,
-    "quality_id": 0,
-    "buffer_stalls": 1,
-    "startup_delay": 1766
+    "quality_id": 2,
+    "buffer_stalls": 0,
+    "startup_delay": 885
   },
   {
     "region": "eu-central-1",
     "policy": "random",
     "iteration": 2,
     "quality_id": 1,
-    "buffer_stalls": 0,
-    "startup_delay": 1716
+    "buffer_stalls": 1,
+    "startup_delay": 1648
   },
   {
     "region": "eu-central-1",
     "policy": "random",
     "iteration": 3,
-    "quality_id": 2,
+    "quality_id": 1,
     "buffer_stalls": 0,
-    "startup_delay": 960
+    "startup_delay": 1265
   },
   {
     "region": "eu-central-1",
@@ -349,14 +349,14 @@
     "iteration": 4,
     "quality_id": 2,
     "buffer_stalls": 0,
-    "startup_delay": 961
+    "startup_delay": 871
   },
   {
     "region": "eu-central-1",
     "policy": "random",
     "iteration": 5,
-    "quality_id": 2,
-    "buffer_stalls": 0,
-    "startup_delay": 987
+    "quality_id": 1,
+    "buffer_stalls": 1,
+    "startup_delay": 1595
   }
 ]
