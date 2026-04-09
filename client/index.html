@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-Region DASH Player</title>
+    <!-- Dash.js via CDN -->
+    <script src="https://cdn.dashjs.org/v4.7.4/dash.all.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #f0f0f0; margin: 0; padding: 20px; }
+        .video-container { max-width: 800px; margin: 0 auto; background: black; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        video { width: 100%; display: block; }
+        .controls { margin-top: 20px; }
+        select, button { padding: 10px; font-size: 16px; margin: 5px; }
+        #metrics { margin-top: 20px; text-align: left; max-width: 800px; margin-left: auto; margin-right: auto; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-family: monospace;}
+    </style>
+</head>
+<body>
+    <h1>Multi-Region Video Selector</h1>
+    
+    <div class="video-container">
+        <video id="videoPlayer" controls autoplay muted></video>
+    </div>
+
+    <div class="controls">
+        <label>Policy:
+            <select id="policySelect">
+                <option value="distance">Distance Based (Closest finding)</option>
+                <option value="round_robin">Round Robin</option>
+                <option value="random">Random</option>
+            </select>
+        </label>
+        
+        <label>Simulate Client Location:
+            <select id="regionSelect">
+                <option value="us-west-1">US-West (California)</option>
+                <option value="us-east-1">US-East (N. Virginia)</option>
+                <option value="eu-central-1">EU-Central (Frankfurt)</option>
+                <option value="ap-southeast-2">AP-Southeast (Sydney)</option>
+            </select>
+        </label>
+        
+        <button id="loadBtn">Load Video</button>
+    </div>
+
+    <div id="metrics" style="display: none;">
+        <h3>Telemetry Logs</h3>
+        <ul id="logList"></ul>
+    </div>
+
+    <script src="dashjs_adapter.js"></script>
+</body>
+</html>

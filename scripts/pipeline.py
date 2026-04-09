@@ -29,4 +29,4 @@ def run_pipeline(input_video, renditions, version_tag):
 
 
 if __name__ == "__main__":
-  sys.exit(run_pipeline('video1.mp4', ['480.mp4'], 1))
+  sys.exit(run_pipeline('video1.mp4', ['360.mp4', '480.mp4', '720.mp4'], 'test_run'))

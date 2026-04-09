@@ -31,32 +31,47 @@ def transcode(input_path: str,
   out_dir.mkdir(parents=True, exist_ok=True)
   outputs = []
 
-  out_name = rendition_files[0] if rendition_files else "480.mp4"
-  out_path = out_dir / out_name 
+  if not rendition_files:
+    rendition_files = ["360.mp4", "480.mp4", "720.mp4"]
 
-  scale = "scale=-2:480"
-  cmd = [
-    FFMPEG, "-y", "-hide_banner", "-loglevel", "info",
-    "-i", input_path,
-    "-vf", scale,
-    "-r", str(fps),
-    "-g", str(gop),
-    "-keyint_min", str(gop),
-    "-sc_threshold", "0",
-    "-c:v", "libx264",
-    "-b:v", "800k",
-    "-maxrate", "900k",
-    "-bufsize", "1600k",
-    "-preset", "fast",
-    "-profile:v", "main",
-    "-x264-params", "nal-brd=cbr",
-    "-c:a", "aac",
-    "-b:a", "96k",
-    str(out_path)
-  ]
+  # ABR ladder configs mapped by height
+  configs = {
+    "360": {"b": "400k", "max": "450k", "buf": "800k"},
+    "480": {"b": "800k", "max": "900k", "buf": "1600k"},
+    "720": {"b": "1500k", "max": "1700k", "buf": "3000k"}
+  }
 
-  _run(cmd)
-  return [str(out_path)]
+  for r_file in rendition_files:
+    height_str = Path(r_file).stem
+    config = configs.get(height_str, configs["480"])
+    
+    out_path = out_dir / r_file 
+    scale = f"scale=-2:{height_str}"
+    
+    cmd = [
+      FFMPEG, "-y", "-hide_banner", "-loglevel", "warning",
+      "-i", input_path,
+      "-vf", scale,
+      "-r", str(fps),
+      "-g", str(gop),
+      "-keyint_min", str(gop),
+      "-sc_threshold", "0",
+      "-c:v", "libx264",
+      "-b:v", config["b"],
+      "-maxrate", config["max"],
+      "-bufsize", config["buf"],
+      "-preset", "fast",
+      "-profile:v", "main",
+      "-x264-params", "nal-brd=cbr",
+      "-c:a", "aac",
+      "-b:a", "96k",
+      str(out_path)
+    ]
+
+    _run(cmd)
+    outputs.append(str(out_path))
+
+  return outputs
 
 # TODO: function that verifies that files exist
 #  def verify_outputs(paths: List[str]) -> Dict: 

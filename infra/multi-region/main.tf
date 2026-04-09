@@ -22,41 +22,52 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-# Deploy Origin to US East 1
+# --- Origin Servers ---
 module "origin_us_east_1" {
   source        = "../origin"
   region_name   = "us-east-1"
   instance_type = var.instance_type
   key_name      = var.key_name
-
-  providers = {
-    aws = aws.useast1
-  }
+  providers     = { aws = aws.useast1 }
 }
 
-# Deploy Origin to US West 2
 module "origin_us_west_2" {
   source        = "../origin"
   region_name   = "us-west-2"
   instance_type = var.instance_type
   key_name      = var.key_name
-
-  providers = {
-    aws = aws.uswest2
-  }
+  providers     = { aws = aws.uswest2 }
 }
 
-# Deploy Origin to EU Central 1
 module "origin_eu_central_1" {
   source        = "../origin"
   region_name   = "eu-central-1"
-  
-  # eu-central-1 sometimes has limited t2.micro capacity in newer accounts, 
-  # but t2.micro is often still the free tier default. If it fails, users can switch to t3.micro.
   instance_type = var.instance_type
   key_name      = var.key_name
+  providers     = { aws = aws.eucentral1 }
+}
 
-  providers = {
-    aws = aws.eucentral1
-  }
+# --- Distributed Client Nodes ---
+module "client_us_east_1" {
+  source        = "../origin"
+  region_name   = "client-us-east-1"
+  instance_type = var.instance_type
+  key_name      = var.key_name
+  providers     = { aws = aws.useast1 }
+}
+
+module "client_us_west_2" {
+  source        = "../origin"
+  region_name   = "client-us-west-2"
+  instance_type = var.instance_type
+  key_name      = var.key_name
+  providers     = { aws = aws.uswest2 }
+}
+
+module "client_eu_central_1" {
+  source        = "../origin"
+  region_name   = "client-eu-central-1"
+  instance_type = var.instance_type
+  key_name      = var.key_name
+  providers     = { aws = aws.eucentral1 }
 }
