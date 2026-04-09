@@ -26,6 +26,23 @@ const path = require('path');
     });
     const page = await browser.newPage();
 
+    // Prevent AWS Backbone from cheating tests with burst speeds. Force a 3.5 Mbps bandwidth ceiling
+    const clientCDP = await page.target().createCDPSession();
+    await clientCDP.send('Network.emulateNetworkConditions', {
+        offline: false,
+        latency: 0, // Natural latency reigns
+        downloadThroughput: 3.5 * 1024 * 1024 / 8, // 3.5 Mbps
+        uploadThroughput: 3.5 * 1024 * 1024 / 8
+    });
+
+    // Bypass Ngrok Free-Tier Interstitial HTML warning which breaks pure XML/MPD scraping
+    await page.setRequestInterception(true);
+    page.on('request', request => {
+        const headers = request.headers();
+        headers['ngrok-skip-browser-warning'] = 'bypass';
+        request.continue({ headers });
+    });
+
     // Intercept console logs from dash.js
     page.on('console', msg => {
         const text = msg.text();
@@ -45,8 +62,8 @@ const path = require('path');
     }, controllerIp, policy, region);
     
     // Monitor playback for 90 seconds to observe ABR behavior and rebuffering
-    console.log("Stream initiated. Capturing telemetry for 60 seconds...");
-    await new Promise(r => setTimeout(r, 60000));
+    console.log("Stream initiated. Capturing telemetry for 15 seconds...");
+    await new Promise(r => setTimeout(r, 15000));
     
     console.log("Test duration complete. Shutting down.");
     await browser.close();

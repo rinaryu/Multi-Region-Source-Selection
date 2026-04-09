@@ -64,7 +64,7 @@ def deploy_to_origins(origins):
         scp_run(ip, "origins/origin_server.py", "deploy/origins/")
         
         # Kill any existing server, run in background via nohup
-        start_cmd = "pkill -f origin_server; nohup python3 deploy/origins/origin_server.py --port 8001 --dir deploy/dash > server.log 2>&1 &"
+        start_cmd = "sudo fuser -k 8001/tcp || true; nohup python3 deploy/origins/origin_server.py --port 8001 --dir deploy/dash/test_run </dev/null >/dev/null 2>&1 &"
         ssh_run(ip, start_cmd)
         print(f"=> Completed Origin {region}")
 

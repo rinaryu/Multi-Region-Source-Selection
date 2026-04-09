@@ -14,11 +14,32 @@ document.addEventListener("DOMContentLoaded", () => {
         logList.appendChild(li);
     }
 
+    let hasStarted = false;
+    let requestTime = 0;
+
     let player = dashjs.MediaPlayer().create();
+    
+    // Force Dash.js to only buffer 2 seconds of video at a time (Low-Latency mode). 
+    // Since our video is only 9 seconds, if we don't restrict this, Dash.js will download the entire 
+    // video into RAM instantly, making stalls physically impossible. This makes the player highly sensitive to lag!
+    player.updateSettings({
+        streaming: {
+            buffer: {
+                stableBufferTime: 2,
+                bufferTimeAtTopQuality: 2,
+                bufferTimeAtTopQualityLongForm: 2
+            }
+        }
+    });
+    
     player.initialize(video, null, true); // Initialize but don't load URL yet
 
     // Listen for QOE Events
     player.on(dashjs.MediaPlayer.events.PLAYBACK_PLAYING, () => {
+        if (!hasStarted) {
+            logMetric(`Startup_Delay: ${Date.now() - requestTime}ms`);
+            hasStarted = true;
+        }
         logMetric("Playback started smoothly");
     });
     
@@ -35,6 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     loadBtn.addEventListener("click", () => {
+        hasStarted = false;
+        requestTime = Date.now();
+        
         const policy = policySelect.value;
         const region = regionSelect.value;
         const sessionId = Math.random().toString(36).substring(7);
@@ -43,7 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const controllerIp = window.CONTROLLER_IP || "localhost";
         
         // Ask Controller API to dynamically rewrite and serve MPD for this specific user
-        const controllerUrl = `http://${controllerIp}:8000/stream.mpd?session=${sessionId}&policy=${policy}&client_region=${region}`;
+        let controllerBase = window.CONTROLLER_IP || "http://localhost:8000";
+        if (!controllerBase.startsWith("http")) { controllerBase = "http://" + controllerBase + ":8000"; }
+        const controllerUrl = `${controllerBase}/stream.mpd?session=${sessionId}&policy=${policy}&client_region=${region}`;
         
         logMetric(`Loading stream using policy [${policy}] from controller [${controllerIp}]`);
         logMetric(`Manifest URL Request: ${controllerUrl}`);

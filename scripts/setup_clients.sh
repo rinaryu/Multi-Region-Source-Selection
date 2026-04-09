@@ -1,5 +1,5 @@
 #!/bin/bash
-IPs=("3.236.111.53" "44.247.231.108" "52.59.229.139")
+IPs=($(terraform -chdir=infra/multi-region output -raw client_us_east_1_ip) $(terraform -chdir=infra/multi-region output -raw client_us_west_2_ip) $(terraform -chdir=infra/multi-region output -raw client_eu_central_1_ip))
 KEY=~/.ssh/origin-key
 
 for IP in "${IPs[@]}"; do
@@ -10,9 +10,13 @@ for IP in "${IPs[@]}"; do
 mkdir -p ~/deploy/client
 cd ~/deploy/client
 
-# Update and install Node + npm + Chromium dependencies
-sudo apt-get update -y
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2
+# Purge default Ubuntu Node 12 packages to prevent dpkg conflicts during upgrade
+sudo apt-get remove -y nodejs libnode72 npm || true
+sudo apt-get autoremove -y
+
+# Update and install Node + Chromium dependencies (Node 18 requires Nodesource setup first)
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2
 
 # Install puppeteer specifically in the client directory
 npm install puppeteer
